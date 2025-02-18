@@ -1,8 +1,28 @@
-# Square Patterns
+# Decaboard: The Art of Square Patterns
 
-The program `user.py` draws a grid of 100 squares, and rotates each square
-according to the angle returned by the `angleIt(row, col, elapsed_seconds)`
-function. The same `angleIt` it function is run on all 100 squares. 
+## Introduction
+
+The program [example.py](example.py) draws a grid of 100 squares, and rotates
+each square according to the angle returned by the `angleIt(row, col,
+elapsed_seconds)` function. The same `angleIt` it function is run on all 100
+squares:
+
+```python
+# example.py
+
+import decaboard
+import math
+
+def angleIt(row, col, elapsed_seconds):
+    return 30 * math.sin((row + col) * elapsed_seconds)
+
+#
+# (1300, 200) is the position of the window on the screen when the program
+# starts: opens the window at a convenient location. Change it to fit your
+# screen.
+#
+decaboard.run_board(angleIt, 1400, 200)
+```
 
 By changing the `angleIt` function you can create many different patterns. This
 style of programming is similar to how
@@ -11,20 +31,25 @@ graphics shader, you write a single function that sets the color of all the
 pixels in an image. Modern graphics cards can run many instance of these
 functions at the same time, resulting in extremely fast performance.
 
+See [problemset1](problemset1/README.md) for a set of beginner problems to
+solve.
+
 ## How to Use It
 
-Download `decaboard.py` and `user.py` to your computer, and then run `user.py`.
-Depending on the values the `angleIt` function returns, different patterns of
-squares should appear.
+Download `decaboard.py` and [example.py](example.py) to your computer, and then
+run [example.py](example.py). Depending on the values the `angleIt` function
+returns, different patterns of squares should appear.
 
 To change the patterns change the `angleIt(row, col, elapsed_seconds)` function
-in `user.py`. `angleIt` is called once for each of the 100 squares on the board.
+in [example.py](example.py). `angleIt` is called once for each of the 100
+squares on the board.
 
 `row` and `col` are the row and column of the square the function is being
 applied to, and `elapsed_seconds` is how long the program has been running for
 (in seconds). Rows and columns start at 0, and if `angleIt` does not return a
 value for a square a default angle of 0 is used (i.e. the square is not
 rotated).
+
 
 ## Examples
 
