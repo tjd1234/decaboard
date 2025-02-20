@@ -3,7 +3,7 @@
 import turtle
 import time
 
-version = "1.0.0"
+version = "1.0.1"
 
 # dimensions of the window
 WIN_WIDTH = 500
@@ -56,7 +56,7 @@ def _turtle_setup(startx, starty):
     turtle.hideturtle()
     turtle.penup()
     turtle.speed(0)
-    turtle.tracer(0)
+    turtle.tracer(0, 0)
     turtle.color(LINE_COLOR)
 
 def run_board(angleIt, startx=None, starty=None):
