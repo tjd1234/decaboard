@@ -1,19 +1,18 @@
-# prob2.py
+# prob7.py
 
 #
-# Problem 2
+# Problem 7
 #
-# Make all the squares in the first five columns rotate clockwise, and all the
-# squares in the last five columns rotate counterclockwise.
+# Make all the squares rotate smoothly back and forth, i.e. they rotate
+# clockwise a little bit, slow down and top, and then rotate counterclockwise,
+# slow down and stop, and so on.
 #
 
 import decaboard
+import math
 
 def angleIt(row, col, elapsed_seconds):
-    if col < 5:
-        return 20 * elapsed_seconds
-    else:
-        return -20 * elapsed_seconds
+    return math.sin(elapsed_seconds) * 20
 
 #
 # (1300, 200) is the position of the window on the screen when the program

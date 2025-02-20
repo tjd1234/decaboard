@@ -1,19 +1,16 @@
-# prob2.py
+# prob5.py
 
 #
-# Problem 2
+# Problem 5
 #
-# Make all the squares in the first five columns rotate clockwise, and all the
-# squares in the last five columns rotate counterclockwise.
+# Make each square rotate clockwise at a rate that depends additively on its
+# column number.
 #
 
 import decaboard
 
 def angleIt(row, col, elapsed_seconds):
-    if col < 5:
-        return 20 * elapsed_seconds
-    else:
-        return -20 * elapsed_seconds
+    return (20 + col) * elapsed_seconds
 
 #
 # (1300, 200) is the position of the window on the screen when the program
