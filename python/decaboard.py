@@ -38,6 +38,7 @@ def _turtle_setup(startx, starty):
     # starts
     #
     turtle.setup(width=WIN_WIDTH, height=WIN_HEIGHT, startx=startx, starty=starty)
+    turtle.title("Decaboard v" + version)
     turtle.colormode(255)  # color mode 255 for RGB values
     turtle.bgcolor(BG_COLOR)
 

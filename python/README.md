@@ -36,9 +36,9 @@ solve.
 
 ## How to Use It
 
-Download `decaboard.py` and [example.py](example.py) to your computer, and then
-run [example.py](example.py). Depending on the values the `angleIt` function
-returns, different patterns of squares should appear.
+Download [decaboard.py](decaboard.py) and [example.py](example.py) to your
+computer, and then run [example.py](example.py). Depending on the values the
+`angleIt` function returns, different patterns of squares should appear.
 
 To change the patterns change the `angleIt(row, col, elapsed_seconds)` function
 in [example.py](example.py). `angleIt` is called once for each of the 100
