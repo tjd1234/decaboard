@@ -1,4 +1,4 @@
-# Problem Set 1
+# Problem Set 2
 
 To try these problems, download [decaboard.py](decaboard.py) and
 [start.py](start.py) to your computer, and then run `python start.py`.
@@ -14,7 +14,7 @@ For instance, to draw this:
 You would write this (see [start.py](start.py)):
 
 ```python
-# start.py
+# example.py
 
 import decaboard
 
@@ -32,62 +32,7 @@ You can put all your answers into [start.py](start.py), naming them like
 `angleIt1`, `angleIt2`, etc. Then pass the function you want to use to
 `decaboard.run_board`.
 
-## Problem 1
-
-<img src="prob1.png" width="400">
-
-[Sample solution](prob1_sol.py)
-
-## Problem 2
-
-<img src="prob2.png" width="400">
-
-[Sample solution](prob2_sol.py)
-
-## Problem 3
-
-<img src="prob3.png" width="400">
-
-[Sample solution](prob3_sol.py)
-
-## Problem 4
-
-<img src="prob4.png" width="400">
-
-[Sample solution](prob4_sol.py)
-
-## Problem 5
-
-<img src="prob5.png" width="400">
-
-[Sample solution](prob5_sol.py)
-
-## Problem 6
-
-<img src="prob6.png" width="400">
-
-[Sample solution](prob6_sol.py)
-
-## Problem 7
-
-<img src="prob7.png" width="400">
-
-[Sample solution](prob7_sol.py)
-
-## Problem 8
-
-<img src="prob8.png" width="400">
-
-[Sample solution](prob8_sol.py)
-
-## Problem 9
-
-<img src="prob9.png" width="400">
-
-[Sample solution](prob9_sol.py) 
-
-## Problem 10
-
-<img src="prob10.png" width="400">
-
-[Sample solution](prob10_sol.py)
+Problems are still under development: see [prob1_sol.py](prob1_sol.py),
+[prob2_sol.py](prob2_sol.py), [prob3_sol.py](prob3_sol.py), ... for some
+samples. Also see [probChallenge.py](probChallenge.py) and
+[probChallenge2.py](probChallenge2.py) for some more challenging problems.
