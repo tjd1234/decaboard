@@ -1,4 +1,4 @@
-# prob5.py
+# prob5_sol.py
 
 #
 # Problem 5

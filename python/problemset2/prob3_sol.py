@@ -1,10 +1,11 @@
-# prob3.py
+# prob3_sol.py
 
 #
 # Problem 3
 #
-# Make the inner 2x2 set of four squares rotate clockwise. Also, make the four
-# corner squares rotate counterclockwise at twice the rate of the inner squares.
+# Make the inner 2x2 set of four squares rotate clockwise. At the same time,
+# make the four corner squares rotate counterclockwise at twice the rate of the
+# inner squares.
 #
 
 import decaboard

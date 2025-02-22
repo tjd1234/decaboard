@@ -4,7 +4,7 @@
 # Problem 6
 #
 # Combine problems 5 and 6 so that the squares both rotate at a rate that
-# depends additively on the column number, and the angle depends additively on
+# depends # additively on the column number, and the angle depends additively on
 # the row number.
 #
 

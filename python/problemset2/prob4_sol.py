@@ -1,4 +1,4 @@
-# prob4.py
+# prob4_sol.py
 
 #
 # Problem 4
@@ -10,7 +10,7 @@
 import decaboard
 
 def angleIt(row, col, elapsed_seconds):
-    return 20  * (elapsed_seconds + row)
+    return 20 * (elapsed_seconds + row)
 
 #
 # (1300, 200) is the position of the window on the screen when the program
