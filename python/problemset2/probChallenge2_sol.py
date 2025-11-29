@@ -1,16 +1,15 @@
-# prob5.py
+# probChallenge2.py
 
 #
-# Problem 5
+# Problem Challenge 2
 #
-# Rotate 34 degrees clockwise all the squares on the main left-to-right diagonal.
+# Make all the tiles rotate in the row-wise pattern shown. 
 #
 
 import decaboard
 
 def angleIt(row, col, elapsed_seconds):
-    if row == col:
-        return 34
+    return 20 * (elapsed_seconds + row * col)
 
 #
 # (1300, 200) is the position of the window on the screen when the program

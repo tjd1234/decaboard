@@ -1,16 +1,17 @@
-# prob5.py
+# prob6.py
 
 #
-# Problem 5
+# Problem 6
 #
-# Rotate 34 degrees clockwise all the squares on the main left-to-right diagonal.
+# Combine problems 5 and 6 so that the squares both rotate at a rate that
+# depends # additively on the column number, and the angle depends additively on
+# the row number.
 #
 
 import decaboard
 
 def angleIt(row, col, elapsed_seconds):
-    if row == col:
-        return 34
+    return (20 + col) * (elapsed_seconds + row)
 
 #
 # (1300, 200) is the position of the window on the screen when the program

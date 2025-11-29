@@ -1,15 +1,16 @@
-# prob5.py
+# prob8.py
 
 #
-# Problem 5
+# Problem 8
 #
-# Rotate 34 degrees clockwise all the squares on the main left-to-right diagonal.
+# Rotate 34 degrees clockwise all the squares above, and to the right, of the
+# main left-to-right diagonal.
 #
 
 import decaboard
 
 def angleIt(row, col, elapsed_seconds):
-    if row == col:
+    if row < col:
         return 34
 
 #

@@ -1,16 +1,15 @@
-# prob5.py
+# probChallenge1.py
 
 #
-# Problem 5
+# Problem Challenge 1
 #
-# Rotate 34 degrees clockwise all the squares on the main left-to-right diagonal.
+# Describe what pattern the code below makes. Make a guess before running it.
 #
 
 import decaboard
 
 def angleIt(row, col, elapsed_seconds):
-    if row == col:
-        return 34
+    return max(row, col) * 20
 
 #
 # (1300, 200) is the position of the window on the screen when the program
