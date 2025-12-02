@@ -2,10 +2,11 @@
 
 ## Introduction
 
-**Shader programming** is a style of programming where you write one function
-that is called for each pixel in an image. Decaboard+ is similar: you write one
-function called `set_square` that is then applied to each cell on a 10 by 10
-grid. You can control the squares color, position, size, angle, and so on.
+**Shader programming** is a style of programming where you write a single
+function, and that single function is called on each pixel in an image.
+Decaboard+ is similar: you write one function called `set_square` that is then
+applied to each cell on a 10 by 10 grid. You can control the squares color,
+position, size, angle, and so on.
 
 Here's an example ([intro_example.py](intro_example.py)) that draws slowly
 expanding squares that angle themselves towards the mouse pointer:
@@ -36,9 +37,9 @@ decaboard_plus.run_board(set_square, 1400, 200)
 By changing the `set_square` function you can create many different patterns.
 This style of programming is similar to how
 [shaders](https://en.wikipedia.org/wiki/Shader) work in graphics card. In a
-graphics shader, you write a single function that sets the color of all the
-pixels in an image. Modern graphics cards can run many instance of these
-functions at the same time, resulting in extremely fast performance.
+graphics shader, a single function that returns a color is applied to each pixel
+in an image. Modern graphics cards can run many instance of these functions at
+the same time, resulting in extremely fast performance.
 
 ## How to Use It
 
@@ -79,10 +80,10 @@ dictionary. Currently, the returned dictionary knows these keys:
 If a key is not present in the return dictionary then a default value is used.
 Unknown keys are ignored.
 
-The intention is that `set_square` should always be a **pure function**: it only
-depends on the input parameters and not on any global variables. Being pure is
-how the function can be easily applied in parallel. While it is possible to make
-`set_square` non-pure, it is not recommended.
+`set_square` should always be a **pure function**: it should only depend on the
+input parameters and not on any global variables. Being pure is how the function
+can be easily applied in parallel. While it is possible to make `set_square`
+non-pure, it is not recommended.
 
 There are also some helper functions available:
 

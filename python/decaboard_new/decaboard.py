@@ -1,7 +1,7 @@
-# decaboard_plus.py
+# decaboard.py
 
 """
-Decaboard+ - A visual programming environment for creating and displaying patterns on a 10x10 grid.
+Decaboard - A visual programming toy for creating patterns on a 10x10 grid.
 
 This module provides a turtle-based graphical interface for displaying and animating patterns
 on a grid. It supports multiple pattern types, mouse interaction, and various display options.
@@ -15,7 +15,7 @@ Features:
 - Pattern switching with number keys
 
 Usage:
-    from decaboard_plus import run_board, wave_pattern
+    from decaboard import run_board, wave_pattern
     run_board(wave_pattern)
 """
 
@@ -25,7 +25,7 @@ import math
 import random
 from typing import Dict, Callable, Any, Tuple, Union, Optional
 
-VERSION = "Decaboard+ v0.4"
+VERSION = "Decaboard v2.1"
 
 # dimensions of the window
 WIN_WIDTH = 500
@@ -223,14 +223,21 @@ def get_cell_at_position(x: float, y: float) -> Optional[Tuple[int, int]]:
     print(f"Cell position: ({row}, {col})")
     return (row, col)
 
+def print_instruction():
+    print("space - pause/resume animation")
+    print("    f - toggle FPS display")
+    print("    g - toggle grid display")
+    print("    t - toggle elapsed time display")
+    print("Click on a cell to see its position")
+    print("Press 1-4 to switch patterns")
 
 def run_board(
     set_square: Callable, startx: Optional[int] = None, starty: Optional[int] = None
 ) -> None:
     """
     Runs the board with the given set_square function. Pass it a function called
-    set_square that takes a row, column, and elapsed time as input, and return the
-    angle to draw the square at that position.
+    set_square that takes a row, column, and elapsed time as input, and return
+    the angle to draw the square at that position.
     """
     global CURRENT_PATTERN
 
@@ -239,14 +246,7 @@ def run_board(
     CURRENT_PATTERN = set_square
 
     _turtle_setup(startx, starty)
-    print("Press space to pause/resume animation")
-    print("Press f to toggle FPS display")  # Add FPS toggle instruction
-    print("Press g to toggle grid display")  # Add grid display toggle instruction
-    print(
-        "Press t to toggle elapsed time display"
-    )  # Add elapsed time toggle instruction
-    print("Click on a cell to see its position")
-    print("Press 1-4 to switch patterns")
+    print_instruction()
     _main_loop()
 
 
@@ -488,7 +488,7 @@ def register_pattern(pattern_id: int, pattern_func: Callable) -> None:
     """
     global PATTERNS
     PATTERNS[pattern_id] = pattern_func
-    print(f"Pattern {pattern_id} registered")
+    # print(f"Pattern {pattern_id} registered")
 
 
 def switch_pattern(pattern_id: int) -> None:

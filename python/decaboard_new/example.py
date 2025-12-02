@@ -1,6 +1,6 @@
 # example.py
 
-import decaboard_plus
+import decaboard
 import math
 
 
@@ -22,4 +22,4 @@ def set_square(row, col, elapsed_seconds, mouseX, mouseY):
 # starts: opens the window at a convenient location. Change it to fit your
 # screen.
 #
-decaboard_plus.run_board(set_square, 1200, 200)
+decaboard.run_board(set_square, 1200, 200)
