@@ -223,6 +223,7 @@ def get_cell_at_position(x: float, y: float) -> Optional[Tuple[int, int]]:
     print(f"Cell position: ({row}, {col})")
     return (row, col)
 
+
 def print_instruction():
     print("space - pause/resume animation")
     print("    f - toggle FPS display")
@@ -230,6 +231,7 @@ def print_instruction():
     print("    t - toggle elapsed time display")
     print("Click on a cell to see its position")
     print("Press 1-4 to switch patterns")
+
 
 def run_board(
     set_square: Callable, startx: Optional[int] = None, starty: Optional[int] = None
@@ -257,147 +259,181 @@ def _main_loop() -> None:
     global _frame_count, _last_fps_time, _current_fps
 
     while True:
-        if PAUSED:
-            turtle.update()
-            time.sleep(0.1)  # Reduce CPU usage while paused
-            continue
+        try:
+            if PAUSED:
+                turtle.update()
+                time.sleep(0.1)  # Reduce CPU usage while paused
+                continue
 
-        turtle.clear()
-        x = X_START
-        y = Y_START
-        # get mouse position
-        mouse_x, mouse_y = _get_mouse_position_relative()
-
-        # get properties from the set_square function
-        elapsed_time = time.time() - _start_time
-
-        for row in range(BOARD_SIZE):
-            for col in range(BOARD_SIZE):
-                # set default values
-                angle: float = 0.0
-                fill_color: Tuple[int, int, int] = BG_COLOR
-                edge_color: Tuple[int, int, int] = LINE_COLOR
-                edge_width: int = 1
-                dx: float = 0.0
-                dy: float = 0.0
-                size: float = float(CELL_SIZE)
-
-                # Make sure CURRENT_PATTERN is not None
-                if CURRENT_PATTERN is None:
-                    # Default to a simple pattern if none is set
-                    d = {"fill_color": BG_COLOR}
-                else:
-                    try:
-                        d = CURRENT_PATTERN(row, col, elapsed_time, mouse_x, mouse_y)
-                    except Exception as e:
-                        print(f"Error in pattern function: {e}")
-                        d = {"fill_color": BG_COLOR}  # Fallback to default
-
-                if d is not None:
-                    if "angle" in d and isinstance(d["angle"], (int, float)):
-                        angle = float(str(d["angle"]))
-                    if (
-                        "fill_color" in d
-                        and isinstance(d["fill_color"], tuple)
-                        and len(d["fill_color"]) == 3
-                    ):
-                        fill_color = d["fill_color"]
-                    if (
-                        "edge_color" in d
-                        and isinstance(d["edge_color"], tuple)
-                        and len(d["edge_color"]) == 3
-                    ):
-                        edge_color = d["edge_color"]
-                    if "edge_width" in d and isinstance(d["edge_width"], (int, float)):
-                        edge_width = int(str(d["edge_width"]))
-                    if "dx" in d and isinstance(d["dx"], (int, float)):
-                        dx = float(str(d["dx"]))
-                    if "dy" in d and isinstance(d["dy"], (int, float)):
-                        dy = float(str(d["dy"]))
-                    if "size" in d and isinstance(d["size"], (int, float)):
-                        size = float(str(d["size"]))
-
-                # draw the square
-                turtle.penup()
-                turtle.goto(x + dx, y + dy)
-                turtle.setheading(angle)  # 0=east, 90=north
-                turtle.color(edge_color, fill_color)
-                turtle.width(edge_width)
-
-                # "drive" to the starting corner of the square
-                turtle.forward(size / 2)
-                turtle.left(90)
-                turtle.forward(size / 2)
-
-                # draw the square
-                turtle.pendown()
-                turtle.begin_fill()
-                turtle.left(90)
-                turtle.forward(size)
-                turtle.left(90)
-                turtle.forward(size)
-                turtle.left(90)
-                turtle.forward(size)
-                turtle.left(90)
-                turtle.forward(size)
-                turtle.end_fill()
-
-                x += CELL_SIZE + GAP
-            y += CELL_SIZE + GAP
+            turtle.clear()
             x = X_START
+            y = Y_START
+            # get mouse position
+            mouse_x, mouse_y = _get_mouse_position_relative()
 
-        # Draw the grid if enabled
-        if SHOW_GRID:
-            draw_grid()
+            # get properties from the set_square function
+            elapsed_time = time.time() - _start_time
 
-        # Display cell position if a cell was clicked
-        if CELL_POS is not None:
-            row, col = CELL_POS
-            cell_x, cell_y = center_of_cell(row, col)
+            for row in range(BOARD_SIZE):
+                for col in range(BOARD_SIZE):
+                    # set default values
+                    angle: float = 0.0
+                    fill_color: Tuple[int, int, int] = BG_COLOR
+                    edge_color: Tuple[int, int, int] = LINE_COLOR
+                    edge_width: int = 1
+                    dx: float = 0.0
+                    dy: float = 0.0
+                    size: float = float(CELL_SIZE)
 
-            # Draw a white circle at the cell center
-            turtle.penup()
-            # turtle.goto(cell_x, cell_y)
-            turtle.goto(cell_x - CELL_SIZE / 2, cell_y - CELL_SIZE / 2)
-            turtle.color(TEXT_COLOR)
-            turtle.dot(5)
+                    # Make sure CURRENT_PATTERN is not None
+                    if CURRENT_PATTERN is None:
+                        # Default to a simple pattern if none is set
+                        d = {"fill_color": BG_COLOR}
+                    else:
+                        try:
+                            d = CURRENT_PATTERN(
+                                row, col, elapsed_time, mouse_x, mouse_y
+                            )
+                        except Exception as e:
+                            print(f"Error in pattern function: {e}")
+                            d = {"fill_color": BG_COLOR}  # Fallback to default
 
-            # Display the (row, col) text centered above the cell
-            turtle.penup()
-            turtle.goto(cell_x - 20, cell_y - 20)  # Position above the cell
-            turtle.color(TEXT_COLOR)
-            turtle.write(f"({row}, {col})", align="center", font=("Arial", 12, "bold"))
+                    if d is not None:
+                        if "angle" in d and isinstance(d["angle"], (int, float)):
+                            angle = float(str(d["angle"]))
+                        if (
+                            "fill_color" in d
+                            and isinstance(d["fill_color"], tuple)
+                            and len(d["fill_color"]) == 3
+                        ):
+                            fill_color = d["fill_color"]
+                        if (
+                            "edge_color" in d
+                            and isinstance(d["edge_color"], tuple)
+                            and len(d["edge_color"]) == 3
+                        ):
+                            edge_color = d["edge_color"]
+                        if "edge_width" in d and isinstance(
+                            d["edge_width"], (int, float)
+                        ):
+                            edge_width = int(str(d["edge_width"]))
+                        if "dx" in d and isinstance(d["dx"], (int, float)):
+                            dx = float(str(d["dx"]))
+                        if "dy" in d and isinstance(d["dy"], (int, float)):
+                            dy = float(str(d["dy"]))
+                        if "size" in d and isinstance(d["size"], (int, float)):
+                            size = float(str(d["size"]))
 
-        # Update FPS counter
-        _frame_count += 1
-        current_time = time.time()
-        if current_time - _last_fps_time >= 1.0:  # Update FPS every second
-            _current_fps = _frame_count
-            _frame_count = 0
-            _last_fps_time = current_time
+                    # draw the square
+                    turtle.penup()
+                    turtle.goto(x + dx, y + dy)
+                    turtle.setheading(angle)  # 0=east, 90=north
+                    turtle.color(edge_color, fill_color)
+                    turtle.width(edge_width)
 
-        # Display FPS if enabled
-        if SHOW_FPS:
-            turtle.penup()
-            turtle.goto(0, 10)  # Position in top-left corner
-            turtle.color(TEXT_COLOR)
-            turtle.write(f"{_current_fps} fps", font=("Arial", 10, "normal"))
+                    # "drive" to the starting corner of the square
+                    turtle.forward(size / 2)
+                    turtle.left(90)
+                    turtle.forward(size / 2)
 
-        # Display elapsed time if enabled
-        if SHOW_TIME:
-            turtle.penup()
-            turtle.goto(
-                WIN_WIDTH / 2 + 10, WIN_HEIGHT - 10
-            )  # Position in top-right corner
-            turtle.color(TEXT_COLOR)
-            turtle.write(
-                f"Elapsed time: {elapsed_time:.1f}s",
-                align="right",
-                font=("Arial", 11, "normal"),
-            )
+                    # draw the square
+                    turtle.pendown()
+                    turtle.begin_fill()
+                    turtle.left(90)
+                    turtle.forward(size)
+                    turtle.left(90)
+                    turtle.forward(size)
+                    turtle.left(90)
+                    turtle.forward(size)
+                    turtle.left(90)
+                    turtle.forward(size)
+                    turtle.end_fill()
 
-        turtle.update()  # re-draws the screen
+                    x += CELL_SIZE + GAP
+                y += CELL_SIZE + GAP
+                x = X_START
 
+            # Draw the grid if enabled
+            if SHOW_GRID:
+                draw_grid()
+
+            # Display cell position if a cell was clicked
+            if CELL_POS is not None:
+                row, col = CELL_POS
+                cell_x, cell_y = center_of_cell(row, col)
+
+                # Draw a white circle at the cell center
+                turtle.penup()
+                # turtle.goto(cell_x, cell_y)
+                turtle.goto(cell_x - CELL_SIZE / 2, cell_y - CELL_SIZE / 2)
+                turtle.color(TEXT_COLOR)
+                turtle.dot(5)
+
+                # Display the (row, col) text centered above the cell
+                turtle.penup()
+                turtle.goto(cell_x - 20, cell_y - 20)  # Position above the cell
+                turtle.color(TEXT_COLOR)
+                turtle.write(
+                    f"({row}, {col})", align="center", font=("Arial", 12, "bold")
+                )
+
+            # Update FPS counter
+            _frame_count += 1
+            current_time = time.time()
+            if current_time - _last_fps_time >= 1.0:  # Update FPS every second
+                _current_fps = _frame_count
+                _frame_count = 0
+                _last_fps_time = current_time
+
+            # Display FPS if enabled
+            if SHOW_FPS:
+                turtle.penup()
+                turtle.goto(0, 10)  # Position in top-left corner
+                turtle.color(TEXT_COLOR)
+                turtle.write(f"{_current_fps} fps", font=("Arial", 10, "normal"))
+
+            # Display elapsed time if enabled
+            if SHOW_TIME:
+                turtle.penup()
+                turtle.goto(
+                    WIN_WIDTH / 2 + 10, WIN_HEIGHT - 10
+                )  # Position in top-right corner
+                turtle.color(TEXT_COLOR)
+                turtle.write(
+                    f"Elapsed time: {elapsed_time:.1f}s",
+                    align="right",
+                    font=("Arial", 11, "normal"),
+                )
+
+            turtle.update()  # re-draws the screen
+        except (turtle.Terminator, Exception):
+            # Window was closed or turtle terminated, exit gracefully without error
+            return
+
+def run_board_simple(
+    set_square: Callable[[int, int, float], float], 
+    startx: Optional[int] = None, 
+    starty: Optional[int] = None
+) -> None:
+    """
+    Runs the board with a simpler set_square function.
+    
+    The set_square function should take (row, col, elapsed_time) and return
+    just the angle (a float) instead of a full dictionary.
+    
+    Args:
+        set_square: Function that takes (row, col, elapsed_time) and returns angle
+        startx: Optional x position for window
+        starty: Optional y position for window
+    """
+    def wrapped_set_square(row: int, col: int, elapsed_time: float, 
+                           mouse_x: float, mouse_y: float) -> Dict[str, Any]:
+        """Wrapper that converts simple function to full dictionary format"""
+        angle = set_square(row, col, elapsed_time)
+        return create_pattern(angle=angle)
+    
+    # Use the existing run_board with the wrapped function
+    run_board(wrapped_set_square, startx, starty)
 
 def draw_grid() -> None:
     """

@@ -1,12 +1,12 @@
-# Decaboard+: Introduction to Shader Programming
+# Decaboard: Introduction to Shader-style Programming
 
 ## Introduction
 
-**Shader programming** is a style of programming where you write a single
+**Shader-style programming** is a style of programming where you write a single
 function and then apply single function to each pixel in an image. Decaboard is
 similar: you write one function called `set_square` that is then applied to each
 cell on a 10 by 10 grid. You can control the squares color, position, size,
-angle, and so on. While it does not use an actul GPU shader, it shows the kinds
+angle, and so on. While it does not use an actual GPU shader, it shows the kinds
 of programming puzzles that arise when doing shader programming.
 
 Here's an example ([intro_example.py](intro_example.py)) that draws slowly
