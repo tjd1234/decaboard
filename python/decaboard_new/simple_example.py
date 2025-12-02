@@ -1,8 +1,8 @@
 # simple_example.py
 
-from decaboard import run_board_simple
+import decaboard 
 
-def my_simple_pattern(row: int, col: int, elapsed_time: float) -> float:
+def angleIt(row, col, elapsed_time):
     return row * 10 + elapsed_time * 30
 
-run_board_simple(my_simple_pattern)
+decaboard.run_board_simple(angleIt)

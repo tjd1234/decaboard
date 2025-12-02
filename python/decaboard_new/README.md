@@ -87,6 +87,29 @@ parameters and not on any global variables. Being pure is how the function can
 be easily applied in parallel. While it is possible to make `set_square`
 non-pure, that violates the spirit of the demo and is not recommended.
 
+### The run_board_simple function
+
+The `run_board_simple` function takes a simpler function as input, one that only
+returns the angle of the square, and takes the row, column, and elapsed time as
+input. If you are new to programming, this is a good starting point, since it's
+easier to use and understand. 
+
+Here's an example ([simple_example.py](simple_example.py)):
+
+```python
+import decaboard 
+
+def angleIt(row, col, elapsed_time):
+    return row * 10 + elapsed_time * 30
+
+decaboard.run_board_simple(angleIt)
+```
+
+[Problem set 1](problemset1/README.md) and [Problem set
+2](problemset2/README.md) both use this simpler funciton.
+
+### Helper Functions
+
 There are also some helper functions:
 
 - `decaboard.run_board(set_square, startx, starty)`: runs the board with the
