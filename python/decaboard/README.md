@@ -1,21 +1,12 @@
 # Decaboard: Shader-style Programming with Squares
 
-This is the Python code for the Decaboard, a digital toy for playing with
-shader-style programming.
-
-If you'd like to see the version used in WCCCE 2025, see
-[decaboard_classic](decaboard_classic/README.md). That version is now
-deprecated.
-
-## Introduction
-
 The basic idea is that Decaboard draws a 10 by 10 grid of squares, and using a
 single function that is applied to each square, you can control the color,
 position, size, angle, and so on of the squares. Since you apply the same one
 function to all squares, it is similar to how shader programming works.
 
-For instance, this program ([example.py](example.py)) makes an animated pattern
-of rotating squares:
+For instance, this program ([simple_example.py](simple_example.py)) makes an
+animated pattern of rotating squares:
 
 ```python
 import decaboard
@@ -38,10 +29,11 @@ See [problemset1](problemset1/README.md) and
 
 ## How to Use decaboard.run_board_simple
 
-Download [decaboard.py](decaboard.py) and [example.py](example.py) to your
-computer, and then run [example.py](example.py), e.g. `python example.py`. A
-window of 100 squares should appear, each rotated according to the `angleIt`
-function. Careful: the window might sometimes be hidden under other windows.
+Download [decaboard.py](decaboard.py) and [example1.py](example1.py) (or
+[simple_example.py](simple_example.py)) to your computer, and then run
+[example1.py](example1.py), e.g. `python example1.py`. A window of 100 squares
+should appear, each rotated according to the `angleIt` function. Careful: the
+window might sometimes be hidden under other windows.
 
 The `angleIt` always takes the same three parameters:
 
@@ -67,7 +59,7 @@ color, position, size, angle, and so on of the squares. It also takes in the
 position of the mouse pointer, so the user can interact with the squares.
 
 For example, this makes colorful moving and rotating squares that change color
-based on the mouse position:
+based on the mouse position ([example1.py](example1.py)):
 
 ```python
 import decaboard
