@@ -1,4 +1,4 @@
-# intro_example.py
+# example2.py
 
 import decaboard
 import math
