@@ -8,14 +8,11 @@ largely with the help of [Cursor's AI](https://www.cursor.com/).
 
 You can try the [JavaScript version in your browser](https://tjd1234.github.io/decaboard/).
 
-The [Python version](python/README.md) also comes with
-[decaboard_plus](python/decaboard_plus/README.md) (you return a dictionary
-control many properties beyond the angle of the squares), and includes some
-problem sets and presentation appropriate for students (presented as a "nifty
-assignment" at [WCCCE
-2025](https://event.fourwaves.com/wccce-2025-calgary/pages))
+The [Python version](python/README.md) includes some problem sets and
+presentation appropriate for students (presented as a "nifty assignment" at
+[WCCCE 2025](https://event.fourwaves.com/wccce-2025-calgary/pages))
 
-Decaboard was inspired by some TikTok demos of the game
+Decaboard was inspired by the game
 [Replicube](https://store.steampowered.com/app/3401490/Replicube/). It's a lot
 of fun: you should buy it (there's a free demo)!
 
