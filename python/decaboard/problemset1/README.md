@@ -19,18 +19,18 @@ You would write this (see [start.py](start.py)):
 import decaboard
 
 def angleIt(row, col, elapsed_seconds):
-    return 34
+    return 0
 
-decaboard.run_board(angleIt)
+decaboard.run_board_simple(angleIt)
 ```
 
 You can control where the window opens by passing in the location of where to
-put the window, e.g. `decaboard.run_board(angleIt, 1400, 200)` opens the window
-in the right side of the screen, near the top.
+put the window, e.g. `decaboard.run_board_simple(angleIt, 1400, 200)` opens the
+window in the right side of the screen, near the top.
 
 You can put all your answers into [start.py](start.py), naming them `angleIt1`,
 `angleIt2`, etc. Then pass the function you want to use to
-`decaboard.run_board`.
+`decaboard.run_board_simple(angleIt1, 1400, 200)`.
 
 ## Problem 1
 

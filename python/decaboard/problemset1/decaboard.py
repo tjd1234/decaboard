@@ -23,7 +23,7 @@ import turtle
 import time
 import math
 import random
-from typing import Dict, Callable, Any, Tuple, Union, Optional
+from typing import Dict, Callable, Any, Tuple, Optional
 
 VERSION = "Decaboard v2.1"
 

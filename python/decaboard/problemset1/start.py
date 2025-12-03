@@ -7,11 +7,11 @@
 import decaboard
 
 def angleIt(row, col, elapsed_seconds):
-    return 0
+    return 45
 
 #
-# (1300, 200) is the position of the window on the screen when the program
+# (1200, 200) is the position of the window on the screen when the program
 # starts: opens the window at a convenient location. Change it to fit your
 # screen.
 #
-decaboard.run_board(angleIt, 1400, 200)
+decaboard.run_board_simple(angleIt, 1200, 200)
