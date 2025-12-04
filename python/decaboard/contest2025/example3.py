@@ -1,4 +1,4 @@
-# mouse_point.py
+# example3.py
 
 import decaboard
 import math
@@ -17,9 +17,9 @@ def set_square(row, col, elapsed_time, mouse_x, mouse_y):
         #
         # for fun, the size of the square depends on the distance between it and
         # the mouse, and make the squares all move in a circle
-        "size": math.dist((mouse_x, mouse_y), (center_x, center_y)) / 5,
-        "dx": 30 * math.sin(elapsed_time),
-        "dy": 10 * math.cos(elapsed_time),
+        # "size": math.dist((mouse_x, mouse_y), (center_x, center_y)) / 5,
+        # "dx": 10 * math.sin(elapsed_time),
+        # "dy": 10 * math.cos(elapsed_time),
     }
 
 

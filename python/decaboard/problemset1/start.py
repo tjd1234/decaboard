@@ -7,7 +7,7 @@
 import decaboard
 
 def angleIt(row, col, elapsed_seconds):
-    return 45
+    return 0
 
 #
 # (1200, 200) is the position of the window on the screen when the program
