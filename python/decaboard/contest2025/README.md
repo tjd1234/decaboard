@@ -62,4 +62,4 @@ Submit the following:
   3. If this contest ran again next year, what is one thing you would change or
      keep the same?
 
-Due Date: no later than Friday December 19, 2025 ??
+Due Date: no later than Wednesday December 17, 2025
