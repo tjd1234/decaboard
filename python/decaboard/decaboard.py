@@ -25,7 +25,7 @@ import math
 import random
 from typing import Dict, Callable, Any, Tuple, Optional
 
-VERSION = "Decaboard v2.1"
+VERSION = "Decaboard v2.2"
 
 # dimensions of the window
 WIN_WIDTH = 500
@@ -51,12 +51,10 @@ TEXT_COLOR = (255, 255, 255)  # White text for cell position
 # canvas for mouse position
 _canvas = turtle.getcanvas()
 
-# Add this to your global variables
 PAUSED = False
-SHOW_FPS = False  # New variable to control FPS display
-SHOW_GRID = False  # New variable to control grid display
-SHOW_TIME = False  # New variable to control elapsed time display
-MOUSE_POS = (0, 0)  # Current mouse position
+SHOW_FPS = False
+SHOW_GRID = False
+SHOW_TIME = False
 CELL_POS = None  # Current cell position (row, col) when mouse is down
 
 # Performance tracking variables
@@ -80,9 +78,11 @@ def clamp(value: float, lo: float, hi: float) -> float:
     return value
 
 
-# Get mouse position in screen coordinates, i.e. 0, 0 is the top left corner of
-# the window.
 def _get_mouse_position_relative() -> Tuple[float, float]:
+    """
+    Get mouse position in screen coordinates, i.e. 0, 0 is the top left corner of
+    the window.
+    """
     # Get mouse position in screen coordinates
     screen_x = _canvas.winfo_pointerx()
     screen_y = _canvas.winfo_pointery()
@@ -107,7 +107,7 @@ def center_of_cell(row: int, col: int) -> Tuple[float, float]:
     return x, y
 
 
-# timing
+# timing variable for elapsed second calculation
 _start_time = 0
 
 
@@ -150,9 +150,9 @@ def _turtle_setup(startx: Optional[int] = None, starty: Optional[int] = None) ->
 
     # Add key bindings
     turtle.onkey(toggle_pause, "space")
-    turtle.onkey(toggle_fps_display, "f")  # Add FPS toggle key binding
-    turtle.onkey(toggle_grid_display, "g")  # Add grid display toggle key binding
-    turtle.onkey(toggle_time_display, "t")  # Add elapsed time toggle key binding
+    turtle.onkey(toggle_fps_display, "f")
+    turtle.onkey(toggle_grid_display, "g")
+    turtle.onkey(toggle_time_display, "t")
 
     # Add number key bindings for patterns
     for i in range(1, 10):
@@ -186,7 +186,7 @@ def get_cell_at_position(x: float, y: float) -> Optional[Tuple[int, int]]:
     Returns None if the position is not within any cell's grid area.
     """
     # Debug print to see what coordinates we're getting
-    print(f"Click at: ({x}, {y})")
+    # print(f"Click at: ({x}, {y})")
 
     # The turtle coordinate system has (0,0) at the top-left corner
     # and (WIN_WIDTH, WIN_HEIGHT) at the bottom-right corner
@@ -220,11 +220,11 @@ def get_cell_at_position(x: float, y: float) -> Optional[Tuple[int, int]]:
         print(f"Invalid row/col: ({row}, {col})")
         return None
 
-    print(f"Cell position: ({row}, {col})")
+    # print(f"Cell position: ({row}, {col})")
     return (row, col)
 
 
-def print_instruction():
+def print_instruction() -> None:
     print("space - pause/resume animation")
     print("    f - toggle FPS display")
     print("    g - toggle grid display")
@@ -283,7 +283,7 @@ def _main_loop() -> None:
                     edge_width: int = 1
                     dx: float = 0.0
                     dy: float = 0.0
-                    size: float = float(CELL_SIZE)
+                    size: float = CELL_SIZE
 
                     # Make sure CURRENT_PATTERN is not None
                     if CURRENT_PATTERN is None:
@@ -300,7 +300,7 @@ def _main_loop() -> None:
 
                     if d is not None:
                         if "angle" in d and isinstance(d["angle"], (int, float)):
-                            angle = float(str(d["angle"]))
+                            angle = float(d["angle"])
                         if (
                             "fill_color" in d
                             and isinstance(d["fill_color"], tuple)
@@ -316,13 +316,13 @@ def _main_loop() -> None:
                         if "edge_width" in d and isinstance(
                             d["edge_width"], (int, float)
                         ):
-                            edge_width = int(str(d["edge_width"]))
+                            edge_width = int(d["edge_width"])
                         if "dx" in d and isinstance(d["dx"], (int, float)):
-                            dx = float(str(d["dx"]))
+                            dx = float(d["dx"])
                         if "dy" in d and isinstance(d["dy"], (int, float)):
-                            dy = float(str(d["dy"]))
+                            dy = float(d["dy"])
                         if "size" in d and isinstance(d["size"], (int, float)):
-                            size = float(str(d["size"]))
+                            size = float(d["size"])
 
                     # draw the square
                     turtle.penup()
@@ -364,7 +364,6 @@ def _main_loop() -> None:
 
                 # Draw a white circle at the cell center
                 turtle.penup()
-                # turtle.goto(cell_x, cell_y)
                 turtle.goto(cell_x - CELL_SIZE / 2, cell_y - CELL_SIZE / 2)
                 turtle.color(TEXT_COLOR)
                 turtle.dot(5)
@@ -410,30 +409,34 @@ def _main_loop() -> None:
             # Window was closed or turtle terminated, exit gracefully without error
             return
 
+
 def run_board_simple(
-    set_square: Callable[[int, int, float], float], 
-    startx: Optional[int] = None, 
-    starty: Optional[int] = None
+    set_square: Callable[[int, int, float], float],
+    startx: Optional[int] = None,
+    starty: Optional[int] = None,
 ) -> None:
     """
     Runs the board with a simpler set_square function.
-    
+
     The set_square function should take (row, col, elapsed_time) and return
     just the angle (a float) instead of a full dictionary.
-    
+
     Args:
         set_square: Function that takes (row, col, elapsed_time) and returns angle
         startx: Optional x position for window
         starty: Optional y position for window
     """
-    def wrapped_set_square(row: int, col: int, elapsed_time: float, 
-                           mouse_x: float, mouse_y: float) -> Dict[str, Any]:
+
+    def wrapped_set_square(
+        row: int, col: int, elapsed_time: float, mouse_x: float, mouse_y: float
+    ) -> Dict[str, Any]:
         """Wrapper that converts simple function to full dictionary format"""
         angle = set_square(row, col, elapsed_time)
         return create_pattern(angle=angle)
-    
+
     # Use the existing run_board with the wrapped function
     run_board(wrapped_set_square, startx, starty)
+
 
 def draw_grid() -> None:
     """
@@ -490,7 +493,6 @@ def draw_grid() -> None:
         turtle.write(str(col), align="center", font=("Arial", 11, "normal"))
 
 
-# Add this function
 def toggle_pause() -> None:
     global PAUSED
     PAUSED = not PAUSED

@@ -52,8 +52,7 @@ Submit the following:
 
 - An animated GIF showing a a few seconds of your program running.
 
-- Answer the following questions (one sentence each is enough, but you can
-  write more if you want):
+- Answer the following questions (one sentence each is enough):
 
   1. What was one thing you learned or figured out during this contest that
      you’re proud of?
