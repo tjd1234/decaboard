@@ -37,7 +37,8 @@ The return dictionary should contain one or more of the following keys:
 See [example1.py](example1.py), [example2.py](example2.py), and
 [example3.py](example3.py) for some examples.
 
-Entires will be judged on how creative and interesting the patterns are, and the
+While the exact criteria for judging has not been finalized, it will be a
+combination of how creative and interesting the patterns are, and the
 size/complexity of the code.
 
 ## Submission
@@ -62,4 +63,4 @@ Submit the following:
   3. If this contest ran again next year, what is one thing you would change or
      keep the same?
 
-Due Date: no later than Wednesday December 17, 2025
+**Due Date**: no later than Wednesday December 17, 2025
